@@ -9,10 +9,10 @@ def test_python_version():
     version = sys.version_info
     if version.major == 3 and version.minor >= 12:
         print("✅ Python version is 3.12+")
-        return True
+        assert True
     else:
         print(f"❌ Python version {version.major}.{version.minor} is not supported. Requires Python 3.12+")
-        return False
+        assert False, f"Python {version.major}.{version.minor} is not supported. Requires Python 3.12+"
 
 def test_imports():
     """Test that all modules can be imported."""
@@ -27,10 +27,10 @@ def test_imports():
         from src.generators.guide_edits import plan_guide_edits
         from src.graph.release_docs_graph import create_release_docs_graph
         print("✅ All imports successful")
-        return True
+        assert True
     except ImportError as e:
         print(f"❌ Import error: {e}")
-        return False
+        assert False, f"Import error: {e}"
 
 def test_schemas():
     """Test that schemas work correctly."""
@@ -67,10 +67,10 @@ def test_schemas():
         assert issue.key == "PROJ-123"
         
         print("✅ Schema validation successful")
-        return True
+        assert True
     except Exception as e:
         print(f"❌ Schema error: {e}")
-        return False
+        assert False, f"Schema error: {e}"
 
 def test_config():
     """Test configuration loading."""
@@ -84,10 +84,10 @@ def test_config():
         assert hasattr(settings, 'openai_api_key')
         
         print("✅ Configuration loading successful")
-        return True
+        assert True
     except Exception as e:
         print(f"❌ Configuration error: {e}")
-        return False
+        assert False, f"Configuration error: {e}"
 
 def main():
     """Run all tests."""
@@ -106,8 +106,13 @@ def main():
     total = len(tests)
     
     for test in tests:
-        if test():
+        try:
+            test()
             passed += 1
+        except AssertionError as e:
+            print(f"❌ Test failed: {e}")
+        except Exception as e:
+            print(f"❌ Test error: {e}")
         print()
     
     print("=" * 50)

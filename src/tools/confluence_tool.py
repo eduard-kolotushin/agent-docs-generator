@@ -22,9 +22,9 @@ class ConfluenceToolInput(BaseModel):
 class ConfluenceTool(BaseTool):
     """Tool for fetching Confluence pages."""
     
-    name = "confluence_tool"
-    description = "Fetch Confluence pages for context and reference"
-    args_schema = ConfluenceToolInput
+    name: str = "confluence_tool"
+    description: str = "Fetch Confluence pages for context and reference"
+    args_schema: type = ConfluenceToolInput
     
     def __init__(self):
         super().__init__()

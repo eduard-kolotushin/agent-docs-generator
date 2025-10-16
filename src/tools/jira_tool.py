@@ -22,9 +22,9 @@ class JiraToolInput(BaseModel):
 class JiraTool(BaseTool):
     """Tool for fetching Jira issues."""
     
-    name = "jira_tool"
-    description = "Fetch Jira issues by fix version, branch, or PR"
-    args_schema = JiraToolInput
+    name: str = "jira_tool"
+    description: str = "Fetch Jira issues by fix version, branch, or PR"
+    args_schema: type = JiraToolInput
     
     def __init__(self):
         super().__init__()

@@ -20,9 +20,9 @@ class BitbucketToolInput(BaseModel):
 class BitbucketTool(BaseTool):
     """Tool for fetching Bitbucket data."""
     
-    name = "bitbucket_tool"
-    description = "Fetch Bitbucket PRs and commits for a release branch"
-    args_schema = BitbucketToolInput
+    name: str = "bitbucket_tool"
+    description: str = "Fetch Bitbucket PRs and commits for a release branch"
+    args_schema: type = BitbucketToolInput
     
     def __init__(self):
         super().__init__()

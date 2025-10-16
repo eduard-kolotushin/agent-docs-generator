@@ -24,9 +24,9 @@ class DocsPRToolInput(BaseModel):
 class DocsPRTool(BaseTool):
     """Tool for creating documentation PRs."""
     
-    name = "docs_pr_tool"
-    description = "Create a PR with documentation updates"
-    args_schema = DocsPRToolInput
+    name: str = "docs_pr_tool"
+    description: str = "Create a PR with documentation updates"
+    args_schema: type = DocsPRToolInput
     
     def __init__(self):
         super().__init__()
