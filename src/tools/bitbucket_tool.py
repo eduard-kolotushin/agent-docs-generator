@@ -3,6 +3,7 @@
 from typing import List, Optional
 from langchain.tools import BaseTool
 from pydantic import BaseModel, Field
+import asyncio
 
 from ..clients.bitbucket_client import BitbucketClient
 from ..schemas import BitbucketPR, BitbucketCommit
