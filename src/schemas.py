@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 
 class JiraIssue(BaseModel):
     """Jira issue data."""
-    key: str
+    key: str = Field(min_length=1, description="Jira issue key (e.g., PROJ-123)")
     summary: str
     issue_type: str
     status: str
